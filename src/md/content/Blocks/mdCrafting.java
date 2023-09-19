@@ -57,7 +57,7 @@ import static mindustry.type.ItemStack.*;
 public class mdCrafting {
     public static Block 
     alloyFurnance, ammoCrafter, duAmmoConstructer, electrolyzer, enrichedUraniumCrafter, fissionFuelInfuser, isotopeSeparator, lavaHeater, metalFormer, metalSeparator, 
-    oreMelter, plutonium239Producer, saltExtractor, slagMixer, stoneMelter, radioactiveLiquefier, radioactiveSeparator, radioactiveSmelter;
+    oreMelter, plasticRefinery, plutonium239Producer, saltExtractor, slagMixer, stoneMelter, radioactiveLiquefier, radioactiveSeparator, radioactiveSmelter;
     
     public static void load() {
     /* Crafting */
@@ -406,6 +406,24 @@ public class mdCrafting {
                 90f
             )
         );
+    }};
+    plasticRefinery = new GenericCrafter("plastic-refinery") {{
+        requirements(Category.crafting, with(copper,75, lead,45, silicon,40, metaglass,30, iron,25));
+        researchCost = with(copper,2250, lead,1250, silicon,600, metaglass,400, iron,300);
+        itemCapacity = 60;
+        liquidCapacity = 120;
+        health = 650;
+        size = 3;
+        hasPower = true;
+        hasItems = true;
+        hasLiquids = true;
+        craftTime = 120;
+        buildCostMultiplier = 0.85f;
+        outputItem = new ItemStack(plastic, 2);
+        drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawDefault() , new DrawRegion("-top"), new DrawFlame());
+
+        consumePower(3.0f);
+        consumeLiquid(oil, 0.2f);
     }};
     plutonium239Producer = new GenericCrafter("plutonium239-producer") {{
         requirements(Category.crafting, with(copper,125, graphite, 40, silicon,40, metaglass,30, titanium,20, plutonium,10));

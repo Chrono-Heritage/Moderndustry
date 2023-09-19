@@ -15,7 +15,7 @@ public class mdItems {
     /* Nuclear Products */
     plutonium239, uranium235, uranium238, uraniumEnriched, uraniumDepleted, uraniumDepletedAmmo, uraniumFuel,
     /* Others */
-    stone, salt,
+    plastic, stone, salt,
     /* Ores */
     rawAluminium, rawIron, rawTin;
     public static void load() {
@@ -120,6 +120,9 @@ public class mdItems {
             radioactivity = 1.15f;
         }};
         /* Others */
+        plastic = new Item("plastic", Color.valueOf("939393")){{
+            cost = 0.05f;
+        }};
         stone  = new Item("stone", Color.valueOf("8C8C8C")){{
             cost = 0.1f;
             lowPriority = true;

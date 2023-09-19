@@ -108,7 +108,7 @@ public class mdTurrets {
                     smokeEffect = Fx.shootBigSmoke;
                     hitEffect = Fx.blastExplosion;
                     buildingDamageMultiplier = 0.3f;
-                    status = Vars.content.statusEffect("chrono-nucleardustry-radiation");
+                    status = radiation;
                     statusDuration = 600;
                     damage = 2000;
                     splashDamage = 1875;

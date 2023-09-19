@@ -1,44 +1,93 @@
 package md.content;
 
-import arc.graphics.*;
-import arc.graphics.g2d.*;
-import arc.math.*;
 import arc.math.geom.*;
-import arc.struct.*;
-import arc.util.*;
-import mindustry.ai.*;
-import mindustry.ai.types.*;
-import mindustry.entities.*;
-import mindustry.entities.abilities.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.entities.part.*;
 import mindustry.entities.part.DrawPart.PartProgress;
 import mindustry.entities.pattern.*;
 import mindustry.content.Fx;
-import mindustry.content.Fx.*;
 import mindustry.gen.*;
-import mindustry.graphics.*;
-import mindustry.type.*;
-import mindustry.type.ammo.*;
 import mindustry.type.unit.*;
-import mindustry.type.weapons.*;
-import mindustry.world.meta.*;
-import md.content.mdItems.*;
-import md.content.mdLiquids.*;
-import md.content.mdStatusEffects.*;
+import arc.graphics.Blending;
+import arc.graphics.Color;
+import mindustry.ai.types.BuilderAI;
+import mindustry.ai.types.GroundAI;
+import mindustry.graphics.Layer;
+import mindustry.graphics.Pal;
+import mindustry.type.UnitType;
+import mindustry.type.Weapon;
+import arc.Core;
+import arc.graphics.Blending;
+import arc.graphics.Color;
+import arc.graphics.g2d.Draw;
+import arc.graphics.g2d.Fill;
+import arc.graphics.g2d.Lines;
+import arc.math.Angles;
+import arc.math.Mathf;
+import arc.math.geom.Rect;
+import arc.scene.ui.layout.Table;
+import arc.struct.ObjectSet;
+import arc.struct.Seq;
+import arc.util.Time;
+import arc.util.Tmp;
+import md.mdLoader.*;
+import mindustry.*;
+import mindustry.ai.UnitCommand;
+import mindustry.ai.types.FlyingFollowAI;
+import mindustry.content.*;
+import mindustry.entities.Effect;
+import mindustry.entities.Lightning;
+import mindustry.entities.Mover;
+import mindustry.entities.Units;
+import mindustry.entities.abilities.*;
+import mindustry.entities.bullet.*;
+import mindustry.entities.effect.ExplosionEffect;
+import mindustry.entities.effect.MultiEffect;
+import mindustry.entities.part.DrawPart;
+import mindustry.entities.part.RegionPart;
+import mindustry.entities.part.ShapePart;
+import mindustry.entities.pattern.ShootSpread;
+import mindustry.gen.*;
+import mindustry.graphics.Drawf;
+import mindustry.maps.*;
+import mindustry.graphics.Layer;
+import mindustry.graphics.Pal;
+import mindustry.type.UnitType;
+import mindustry.type.Weapon;
+import mindustry.type.ammo.ItemAmmoType;
+import mindustry.type.ammo.PowerAmmoType;
+import mindustry.type.unit.ErekirUnitType;
+import mindustry.type.unit.TankUnitType;
+import mindustry.type.weapons.PointDefenseWeapon;
+import mindustry.type.weapons.RepairBeamWeapon;
+import mindustry.world.blocks.defense.MendProjector;
+import mindustry.world.blocks.defense.RegenProjector;
+import mindustry.world.meta.Env;
+
+import static mindustry.content.Fx.rand;
+import static mindustry.content.Fx.turbinegenerate;
 
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
 import static arc.math.Angles.*;
 import static mindustry.Vars.*;
+import static md.content.mdStatusEffects.*;
+import static md.mdLoader.*;
 
 public class mdUnitTypes {
+    static {
+        EntityMapping.nameMap.put("chrono-moderndustry-nuclear-tank", EntityMapping.idMap[43]);
+        EntityMapping.nameMap.put("chrono-moderndustry-pistoler", EntityMapping.idMap[4]);
+        EntityMapping.nameMap.put("chrono-moderndustry-twin-pistoler", EntityMapping.idMap[4]);
+        EntityMapping.nameMap.put("chrono-moderndustry-multi-pistoler", EntityMapping.idMap[4]);
+    }
+
     public static UnitType
-    /* Core Unit */
-    neutron,
-    /* Normal Units */
-    nuclearTank, pistoler, twinPistoler, multiPistoler;
+        /* Core Unit */
+        neutron,
+        /* Normal Units */
+        nuclearTank, pistoler, twinPistoler, multiPistoler;
     public static void load(){
         neutron = new UnitType("neutron"){{
             constructor = UnitEntity::create;
@@ -74,7 +123,7 @@ public class mdUnitTypes {
                     width = 3f;
                     length = 80f;
                     lifetime = 180f;
-                    status = mdStatusEffects.radiation;
+                    status = radiation;
                     colors = new Color[]{Color.valueOf("218A21"), Color.valueOf("32CD32"), Color.white};
                     collidesTeam = false;
                     buildingDamageMultiplier = 0.01f;
@@ -83,11 +132,12 @@ public class mdUnitTypes {
             loopSound = Sounds.none;
         }};
         nuclearTank = new TankUnitType("nuclear-tank"){{
-            constructor = UnitEntity::create;
+            previewRegion = Core.atlas.find(name + "-preview");
+            flying = false;
             hitSize = 46f;
             treadPullOffset = 1;
             speed = 0.75f;
-            health = 25000;
+            health = 23500;
             armor = 30f;
             crushDamage = 25f / 5f;
             rotateSpeed = 1.5f;
@@ -95,7 +145,7 @@ public class mdUnitTypes {
             float xo = 231f/2f, yo = 231f/2f;
             treadRects = new Rect[]{new Rect(27 - xo, 152 - yo, 56, 73), new Rect(24 - xo, 51 - 9 - yo, 29, 17), new Rect(59 - xo, 18 - 9 - yo, 39, 19)};
 
-            weapons.add(new Weapon("chrono-nucleardustry-main-cannon"){{
+            weapons.add(new Weapon("chrono-moderndustry-main-cannon"){{
                 shootSound = Sounds.largeCannon;
                 layerOffset = 0.1f;
                 reload = 100f;
@@ -103,7 +153,7 @@ public class mdUnitTypes {
                 shake = 5f;
                 recoil = 5f;
                 rotate = true;
-                rotateSpeed = 0.6f;
+                rotateSpeed = 1f;
                 mirror = false;
                 x = 0f;
                 y = -2f;
@@ -173,7 +223,7 @@ public class mdUnitTypes {
                 bullet = new BasicBulletType(8f, 360f){{
                     sprite = "missile-large";
                     width = 12f;
-                    height = 20f;
+                    height = 25f;
                     lifetime = 35f;
                     hitSize = 6f;
 
@@ -186,6 +236,17 @@ public class mdUnitTypes {
                     trailWidth = 4f;
                     trailLength = 9;
                     hitEffect = despawnEffect = Fx.massiveExplosion;
+                    fragBullets = 12;
+                    fragBullet = new BasicBulletType(30f, 150){{
+                        width = 8f;
+                        height = 15f;
+                        shrinkY = 1f;
+                        lifetime = 2f;
+                        backColor = Pal.gray;
+                        frontColor = Color.white;
+                        despawnEffect = Fx.none;
+                        collidesGround = true;
+                    }};
 
                     shootEffect = new ExplosionEffect(){{
                         lifetime = 40f;
@@ -203,7 +264,7 @@ public class mdUnitTypes {
                     }};
                 }};
             }});
-            weapons.add(new Weapon("chrono-nucleardustry-secondary-machine-turret"){{
+            weapons.add(new Weapon("chrono-moderndustry-secondary-machine-turret"){{
                 shoot = new ShootSpread(){{
                     shots = 1;
                     spread = 1f;
@@ -218,7 +279,30 @@ public class mdUnitTypes {
                     width = 8f;
                     height = 17f;
                     lifetime = 10f;
-                    status = mdStatusEffects.radiation;
+                    status = radiation;
+                    frontColor = Color.valueOf("249624");
+                    backColor = Color.valueOf("218A21");
+                    lightColor = Color.valueOf("32CD32");
+                    collidesTeam = false;
+                    pierceArmor = true;
+                }};
+            }});
+            weapons.add(new Weapon("chrono-moderndustry-secondary-machine-turret"){{
+                shoot = new ShootSpread(){{
+                    shots = 1;
+                    spread = 1f;
+                }};
+                reload = 6f;
+                x = 7;
+                y = -7;
+                mirror = true;
+                rotate = true;
+                rotateSpeed = 3f; 
+                bullet = new BasicBulletType(25f,24){{
+                    width = 8f;
+                    height = 17f;
+                    lifetime = 10f;
+                    status = radiation;
                     frontColor = Color.valueOf("249624");
                     backColor = Color.valueOf("218A21");
                     lightColor = Color.valueOf("32CD32");
@@ -234,11 +318,12 @@ public class mdUnitTypes {
             }});
         }};
         pistoler = new UnitType("pistoler"){{
-            constructor = UnitEntity::create;
+            previewRegion = Core.atlas.find(name + "-preview");
+            flying = false;
             speed = 0.6f;
             hitSize = 9f;
             health = 250;
-            weapons.add(new Weapon("chrono-metaldustry-pistol"){{
+            weapons.add(new Weapon("chrono-moderndustry-pistol"){{
                 reload = 30f;
                 x = 4f;
                 y = 2f;
@@ -254,11 +339,11 @@ public class mdUnitTypes {
             }});
         }};
         twinPistoler = new UnitType("twin-pistoler"){{
-            constructor = UnitEntity::create;
+            previewRegion = Core.atlas.find(name + "-preview");
             speed = 0.5f;
             hitSize = 10f;
             health = 350;
-            weapons.add(new Weapon("chrono-metaldustry-pistolBig"){{
+            weapons.add(new Weapon("chrono-moderndustry-pistolBig"){{
                 reload = 30f;
                 x = 6f;
                 y = 3f;
@@ -274,15 +359,15 @@ public class mdUnitTypes {
             }});
         }};
         multiPistoler = new UnitType("multi-pistoler"){{
-            constructor = UnitEntity::create;
+            previewRegion = Core.atlas.find(name + "-preview");
             speed = 0.45f;
             hitSize = 13f;
             rotateSpeed = 3f;
             health = 900;
             armor = 9f;
             mechFrontSway = 0.55f;
-            weapons.add(new Weapon("chrono-metaldustry-pistolBigger"){{
-                reload = 25f;
+            weapons.add(new Weapon("chrono-moderndustry-pistolBigger"){{
+                reload = 20f;
                 y = 1f;
                 x = 9f;
                 top = false;
@@ -290,20 +375,20 @@ public class mdUnitTypes {
                 recoil = 4f;
                 shake = 2f;
                 ejectEffect = Fx.casing2;
-                bullet = new ArtilleryBulletType(3f, 20){{
+                bullet = new ArtilleryBulletType(3f, 40){{
                     width = 9f;
                     height = 11f;
                     lifetime = 60f;
                 }};
             }});
-            weapons.add(new Weapon("chrono-metaldustry-pistolBig"){{
-                reload = 30f;
+            weapons.add(new Weapon("chrono-mordendustry-pistolBig"){{
+                reload = 25f;
                 x = 4f;
                 y = 2f;
                 top = false;
                 rotate = false;
                 ejectEffect = Fx.casing1;
-                bullet = new BasicBulletType(3.25f, 15){{
+                bullet = new BasicBulletType(3.25f, 30){{
                     width = 7f;
                     height = 9f;
                     lifetime = 50f;

@@ -14,7 +14,7 @@ repositories{
 
 ext{
     //the build number that this mod is made for
-    mindustryVersion = 'v143.1'
+    mindustryVersion = 'v146'
     jabelVersion = "93fde537c7"
     sdkRoot = System.getenv("ANDROID_HOME") ?: System.getenv("ANDROID_SDK_ROOT")
 }
@@ -27,10 +27,10 @@ allprojects{
 }
 
 dependencies{
+    implementation 'org.jetbrains:annotations:20.1.0'
     compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
     compileOnly "com.github.Anuken.MindustryJitpack:core:$mindustryVersion"
     implementation "com.github.liplum:MultiCrafterLib:v1.7"
-
     annotationProcessor "com.github.Anuken:jabel:$jabelVersion"
 }
 
@@ -70,7 +70,7 @@ jar{
     }
 
     from(rootDir){
-        include "mod.hjson"
+        include "mod.json"
     }
 
     from("assets/"){
