@@ -5,9 +5,6 @@
 "description": "A mod that add modern items and block inculde industry or nuclear.",
 "version": "v0.01",
 "minGameVersion": 154,
-"dependencies": [ 
-    "multi-crafter"
-],
 "main": "md.mdLoader",
 "java": true
 }
