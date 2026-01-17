@@ -199,7 +199,7 @@ public class mdCrafting {
         hasLiquids = true;
         craftTime = 90;
         outputLiquid = new LiquidStack(deuterium,0.1f);
-        drawer = new DrawMulti( new DrawDefault() , new DrawRegion("-top"), new DrawFlame());
+        drawer = new DrawMulti( new DrawRegion("-bottom"), new DrawDefault() , new DrawRegion("-top"), new DrawFlame());
 
         consumePower(2.0f);
         consumeLiquid(heavyWater, 0.1f);
