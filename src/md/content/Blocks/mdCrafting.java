@@ -420,7 +420,7 @@ public class mdCrafting {
         craftTime = 120;
         buildCostMultiplier = 0.85f;
         outputItem = new ItemStack(plastic, 2);
-        drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawDefault() , new DrawRegion("-top"), new DrawFlame());
+        drawer = new DrawDefault();
 
         consumePower(3.0f);
         consumeLiquid(oil, 0.2f);
