@@ -25,7 +25,6 @@ import arc.graphics.g2d.Fill;
 import arc.graphics.g2d.Lines;
 import arc.math.Angles;
 import arc.math.Mathf;
-import arc.math.geom.Rect;
 import arc.scene.ui.layout.Table;
 import arc.struct.ObjectSet;
 import arc.struct.Seq;
@@ -43,10 +42,7 @@ import mindustry.entities.Units;
 import mindustry.entities.abilities.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.ExplosionEffect;
-import mindustry.entities.effect.MultiEffect;
-import mindustry.entities.part.DrawPart;
 import mindustry.entities.part.RegionPart;
-import mindustry.entities.part.ShapePart;
 import mindustry.entities.pattern.ShootSpread;
 import mindustry.gen.*;
 import mindustry.graphics.Drawf;
@@ -57,16 +53,18 @@ import mindustry.type.UnitType;
 import mindustry.type.Weapon;
 import mindustry.type.ammo.ItemAmmoType;
 import mindustry.type.ammo.PowerAmmoType;
-import mindustry.type.unit.ErekirUnitType;
 import mindustry.type.unit.TankUnitType;
 import mindustry.type.weapons.PointDefenseWeapon;
 import mindustry.type.weapons.RepairBeamWeapon;
 import mindustry.world.blocks.defense.MendProjector;
 import mindustry.world.blocks.defense.RegenProjector;
 import mindustry.world.meta.Env;
+import mindustry.content.Sounds;
 
 import static mindustry.content.Fx.rand;
 import static mindustry.content.Fx.turbinegenerate;
+
+import org.w3c.dom.css.Rect;
 
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
@@ -117,8 +115,7 @@ public class mdUnitTypes {
                 mirror = false;
                 rotate = false;
                 continuous = true;
-                shootSound = Sounds.laser;
-                loopSound = Sounds.beam;
+                shootSound = Sounds.shootLancer;
                 bullet = new ContinuousLaserBulletType(20){{
                     width = 3f;
                     length = 80f;
@@ -146,7 +143,7 @@ public class mdUnitTypes {
             treadRects = new Rect[]{new Rect(27 - xo, 152 - yo, 56, 73), new Rect(24 - xo, 51 - 9 - yo, 29, 17), new Rect(59 - xo, 18 - 9 - yo, 39, 19)};
 
             weapons.add(new Weapon("chrono-moderndustry-main-cannon"){{
-                shootSound = Sounds.largeCannon;
+                shootSound = Sounds.shootConquer;
                 layerOffset = 0.1f;
                 reload = 100f;
                 shootY = 32.5f;

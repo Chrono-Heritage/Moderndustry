@@ -41,6 +41,9 @@ import multicraft.*;
 
 import static mindustry.Vars.*;
 import static mindustry.type.ItemStack.*;
+
+import java.util.Locale.Category;
+
 import static mindustry.content.Items.*;
 import static mindustry.content.Liquids.*;
 import static mindustry.content.StatusEffects.*;
@@ -252,7 +255,7 @@ public class mdTurrets {
             range = 256;
             rotateSpeed = 10f;
             recoil = 5f;
-            shootSound = Sounds.laser;
+            shootSound = Sounds.shootLancer;
             shootCone = 30f;
             shoot = new ShootSpread(1,0);
             ammo(

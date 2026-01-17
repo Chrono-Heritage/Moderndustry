@@ -43,6 +43,9 @@ import multicraft.*;
 
 import static mindustry.Vars.*;
 import static mindustry.type.ItemStack.*;
+
+import java.util.Locale.Category;
+
 import static mindustry.content.Items.*;
 import static mindustry.content.Liquids.*;
 import static mindustry.content.StatusEffects.*;
@@ -266,7 +269,7 @@ public class mdCrafting {
         consumePower(1.0f);
         rotateDraw = false;
         drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidRegion(), new DrawDefault());
-        ambientSound = Sounds.extractLoop;
+        ambientSound = Sounds.loopExtract;
         ambientSoundVolume = 0.08f;
         regionRotated1 = 2;
         craftTime = 60f * 2f;
