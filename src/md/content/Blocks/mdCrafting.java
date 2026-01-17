@@ -39,6 +39,8 @@ import mindustry.world.meta.*;
 import mindustry.world.modules.*;
 import mindustry.world.payloads.*;      
 import mindustry.world.recipe.*;
+import mindustry.world.blocks.production.GenericCrafter;
+import mindustry.world.blocks.production.HeatProducer;
 import multicraft.*;
 
 

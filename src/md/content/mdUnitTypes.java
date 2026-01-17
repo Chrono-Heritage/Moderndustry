@@ -59,7 +59,6 @@ import mindustry.type.weapons.RepairBeamWeapon;
 import mindustry.world.blocks.defense.MendProjector;
 import mindustry.world.blocks.defense.RegenProjector;
 import mindustry.world.meta.Env;
-import mindustry.content.Sounds;
 
 import static mindustry.content.Fx.rand;
 import static mindustry.content.Fx.turbinegenerate;
