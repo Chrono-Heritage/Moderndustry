@@ -36,16 +36,18 @@ import mindustry.world.blocks.units.*;
 import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
+
+
 import multicraft.*;
 
 
 import static mindustry.Vars.*;
+import static mindustry.type.ItemStack.*;
 import static mindustry.content.Items.*;
 import static mindustry.content.Liquids.*;
 import static mindustry.content.StatusEffects.*;
 import static md.content.mdLiquids.*;
 import static md.content.mdItems.*;
-import static mindustry.type.ItemStack.*;
 
 public class mdCrafting {
     public static Block 
