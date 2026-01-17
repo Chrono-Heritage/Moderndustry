@@ -4,6 +4,7 @@ import arc.graphics.*;
 import arc.math.*;
 import arc.struct.*;
 import mindustry.*;
+import mindustry.Category.*;
 import mindustry.entities.*;
 import mindustry.entities.abilities.*;
 import mindustry.entities.bullet.*;
@@ -40,7 +41,6 @@ import mindustry.world.modules.*;
 import mindustry.world.payloads.*;      
 import mindustry.world.recipe.*;
 import mindustry.world.blocks.production.GenericCrafter;
-import mindustry.world.blocks.production.HeatProducer;
 import multicraft.*;
 
 
