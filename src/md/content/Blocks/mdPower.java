@@ -94,7 +94,7 @@ public class mdPower {
             itemDuration = 180;
             buildCostMultiplier = 0.35f;
             warmupSpeed = 0.01f;
-            ambientSound = Sounds.pulse;
+            ambientSound = Sounds.loopPulse;
             ambientSoundVolume = 0.2f;
             powerProduction = 440.0f;
             drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawPlasma(), new DrawDefault() );

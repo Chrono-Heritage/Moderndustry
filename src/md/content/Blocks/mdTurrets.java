@@ -128,8 +128,8 @@ public class mdTurrets {
             range = 240;
             rotateSpeed = 10f;
             inaccuracy = 2f;
-            recoil = 5f;
-            shootSound = Sounds.shootAlt;
+            recoil = 2.5f;
+            shootSound = Sounds.shootBreach;
             shootCone = 30f;
             shoot = new ShootSpread(1,0);
             ammo(
@@ -221,7 +221,7 @@ public class mdTurrets {
             range = 150;
             rotateSpeed = 20f;
             recoil = 3f;
-            shootSound = Sounds.shootAlt;
+            shootSound = Sounds.shootBreach;
             shootCone = 30f;
             shoot = new ShootSpread(1,0);
             minWarmup = 0.8f;
@@ -261,7 +261,7 @@ public class mdTurrets {
             range = 256;
             rotateSpeed = 10f;
             recoil = 5f;
-            shootSound = Sounds.laser;
+            shootSound = Sounds.shootLancer;
             shootCone = 30f;
             shoot = new ShootSpread(1,0);
             ammo(

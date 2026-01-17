@@ -271,7 +271,7 @@ public class mdCrafting {
         consumePower(1.0f);
         rotateDraw = false;
         drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidRegion(), new DrawDefault());
-        ambientSound = Sounds.extractLoop;
+        ambientSound = Sounds.loopExtract;
         ambientSoundVolume = 0.08f;
         regionRotated1 = 2;
         craftTime = 60f * 2f;
