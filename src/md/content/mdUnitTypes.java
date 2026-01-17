@@ -59,11 +59,10 @@ import mindustry.type.weapons.RepairBeamWeapon;
 import mindustry.world.blocks.defense.MendProjector;
 import mindustry.world.blocks.defense.RegenProjector;
 import mindustry.world.meta.Env;
+import mindustry.Category.*;
 
 import static mindustry.content.Fx.rand;
 import static mindustry.content.Fx.turbinegenerate;
-
-import org.w3c.dom.css.Rect;
 
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
