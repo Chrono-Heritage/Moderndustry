@@ -6,8 +6,5 @@
 "version": "v0.03",
 "minGameVersion": "154",
 "main": "md.mdLoader",
-"dependencies": {
-    "implementation": "com.github.liplum:MultiCrafterLib:<version>"
-},
 "java": true
 }
