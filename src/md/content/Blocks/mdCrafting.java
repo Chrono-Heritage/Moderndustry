@@ -4,6 +4,9 @@ import arc.graphics.*;
 import arc.math.*;
 import arc.struct.*;
 import mindustry.*;
+import mindustry.content.*;
+import mindustry.type.StatusEffect.*;
+import mindustry.content.StatusEffects.*;
 import mindustry.entities.*;
 import mindustry.entities.abilities.*;
 import mindustry.entities.bullet.*;
@@ -11,7 +14,6 @@ import mindustry.entities.effect.*;
 import mindustry.entities.part.DrawPart.*;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
-import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
@@ -36,23 +38,21 @@ import mindustry.world.blocks.units.*;
 import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
-import mindustry.world.modules.*;
-import mindustry.world.payloads.*;      
-import mindustry.world.recipe.*;
-import mindustry.world.blocks.production.GenericCrafter;
+import mindustry.world.blocks.defense.Wall;
+import mindustry.entities.effect.MultiEffect;
+import mindustry.entities.part.RegionPart;
+import mindustry.gen.Sounds;
+import mindustry.world.Block;
 import multicraft.*;
 
 
 import static mindustry.Vars.*;
-import static mindustry.type.ItemStack.*;
-
-import java.util.Locale.Category;
-
 import static mindustry.content.Items.*;
 import static mindustry.content.Liquids.*;
 import static mindustry.content.StatusEffects.*;
 import static md.content.mdLiquids.*;
 import static md.content.mdItems.*;
+import static mindustry.type.ItemStack.*;
 
 public class mdCrafting {
     public static Block 
@@ -271,7 +271,7 @@ public class mdCrafting {
         consumePower(1.0f);
         rotateDraw = false;
         drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidRegion(), new DrawDefault());
-        ambientSound = Sounds.loopExtract;
+        ambientSound = Sounds.extractLoop;
         ambientSoundVolume = 0.08f;
         regionRotated1 = 2;
         craftTime = 60f * 2f;
