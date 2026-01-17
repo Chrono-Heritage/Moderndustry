@@ -36,6 +36,9 @@ import mindustry.world.blocks.units.*;
 import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
+import mindustry.world.modules.*;
+import mindustry.world.payloads.*;      
+import mindustry.world.recipe.*;
 
 
 import multicraft.*;
@@ -49,6 +52,7 @@ import java.util.Locale.Category;
 import static mindustry.content.Items.*;
 import static mindustry.content.Liquids.*;
 import static mindustry.content.StatusEffects.*;
+import static mindustry.content.Blocks.*;
 import static md.content.mdLiquids.*;
 import static md.content.mdItems.*;
 
