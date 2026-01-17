@@ -1,0 +1,15 @@
+name: "chrono-moderndustry"
+
+displayName: "Moderndustry"
+
+author: "Chrono Heritage"
+
+description: "A mod that add modern items and block inculde industry or nuclear."
+
+version: "v0.03"
+
+minGameVersion: "154"
+
+main: "md.mdLoader"
+
+java: true
