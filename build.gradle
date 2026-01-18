@@ -40,6 +40,7 @@ dependencies{
     compileOnly "com.github.Anuken.Mindustry:core:v154"
 
     annotationProcessor "com.github.Anuken:jabel:$jabelVersion"
+    implementation 'com.github.liplum:MultiCrafterLib:1.8'
 }
 
 tasks.register('jarAndroid') {
