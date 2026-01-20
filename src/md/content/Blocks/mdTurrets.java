@@ -241,14 +241,14 @@ public class mdTurrets {
                     width = 3f;
                     height = 11f;
                     lifetime = 10f;
-                    ammoMultiplier = 5;
-                }},
-                machGunAmmo, new BasicBulletType(20f,10){{
+                    ammoMultiplier = 20;
+                }}
+             /*   machGunAmmo, new BasicBulletType(20f,10){{
                     width = 3f;
                     height = 11f;
                     lifetime = 10f;
                     ammoMultiplier = 3;
-                }}
+                }} */
             );
         }};
         nuclearLaserEmitter = new ItemTurret("nuclear-laser-emitter"){{

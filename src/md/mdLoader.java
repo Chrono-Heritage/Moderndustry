@@ -1,11 +1,6 @@
 package md;
 
-import md.content.mdItems;
-import md.content.mdLiquids;
-import md.content.mdStatusEffects;
-import md.content.mdUnitTypes;
-import md.content.mdBlocks;
-import md.content.mdTechTree;
+import md.content.*;
 import mindustry.mod.Mod;
 import mindustry.content.Blocks;
 
@@ -20,7 +15,9 @@ public class mdLoader extends Mod{
         mdStatusEffects.load();
         mdUnitTypes.load();
         mdBlocks.load();
-        mdTechTree.load();
+       /* mdTechTree.load(); */
+
+        //Make stone and related blocks unmineable and drop Stone
         (Blocks.stone).itemDrop = mdItems.stone;
         (Blocks.stone).playerUnmineable = true;
         (Blocks.craters).itemDrop = mdItems.stone;

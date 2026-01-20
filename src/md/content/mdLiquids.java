@@ -7,10 +7,12 @@ import mindustry.type.*;
 public class mdLiquids {
 
     public static Liquid
+    /* Temporarily removed liquids:
+        moltenAluminium, moltenIron, moltenTin,
+    */
     /* Gases */
     deuterium, heavyWater, tritium,
     /* Molten Metals */
-    moltenAluminium, moltenIron, moltenTin,
     /* Others */
     lava, radioactiveSolution;
 
@@ -28,7 +30,27 @@ public class mdLiquids {
             viscosity = 0.65f;
         }};
         /*Molten Metals */
-        moltenAluminium = new Liquid("molten-aluminium", Color.valueOf("BDC7CC")){{
+        /* Others */
+        lava = new Liquid("lava", Color.valueOf("BC3F11")){{
+            flammability = 5.0f;
+            temperature = 5.0f;
+            heatCapacity = 0f;
+            viscosity = 0.9f;
+            effect = StatusEffects.melting;
+            lightColor = Color.valueOf("ed760e").a(0.6f);
+        }};
+        radioactiveSolution = new Liquid("radioactive-solution", Color.valueOf("B5C103")){{
+            explosiveness = 0.75f;
+            temperature = 0.4f;
+            viscosity = 0.4f;
+            heatCapacity = 0.1f;
+            coolant = false;
+        }};
+    };
+};
+/* Temporarily removed codes:
+
+            moltenAluminium = new Liquid("molten-aluminium", Color.valueOf("BDC7CC")){{
             flammability = 4.0f;
             temperature = 4.0f;
             heatCapacity = 0f;
@@ -52,21 +74,4 @@ public class mdLiquids {
             effect = StatusEffects.melting;
             lightColor = Color.valueOf("DAEFEF").a(0.6f);
         }};
-        /* Others */
-        lava = new Liquid("lava", Color.valueOf("BC3F11")){{
-            flammability = 5.0f;
-            temperature = 5.0f;
-            heatCapacity = 0f;
-            viscosity = 0.9f;
-            effect = StatusEffects.melting;
-            lightColor = Color.valueOf("ed760e").a(0.6f);
-        }};
-        radioactiveSolution = new Liquid("radioactive-solution", Color.valueOf("B5C103")){{
-            explosiveness = 0.75f;
-            temperature = 0.4f;
-            viscosity = 0.4f;
-            heatCapacity = 0.1f;
-            coolant = false;
-        }};
-    };
-};
+ */

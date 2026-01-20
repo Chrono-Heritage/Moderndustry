@@ -6,18 +6,23 @@ import mindustry.type.*;
 public class mdItems {
 
     public static Item
+    /* Temporarily removed items:
+        machGunAmmo
+         Ores 
+        rawAluminium, rawIron, rawTin;
+    */
+
     /* Base Metals */
     aluminium, iron, lithium, nickel, silver, tin, plutonium, uranium,
     /* Alloys */
     bronze, constantan, steel, radioalloy,
     /* Ammo */
-    bmgHE, bmgNuclear, bmg, machGunAmmo,
+    bmgHE, bmgNuclear, bmg,
     /* Nuclear Products */
     plutonium239, uranium235, uranium238, uraniumEnriched, uraniumDepleted, uraniumDepletedAmmo, uraniumFuel,
     /* Others */
-    plastic, stone, salt,
-    /* Ores */
-    rawAluminium, rawIron, rawTin;
+    plastic, stone, salt;
+
     public static void load() {
         /* Base Metals */
         aluminium  = new Item("aluminium", Color.valueOf("BDC7CC")){{
@@ -89,11 +94,6 @@ public class mdItems {
             radioactivity = 1.0f;
             buildable = false;
         }};  
-        machGunAmmo = new Item("machine-gun-ammo", Color.valueOf("3F3F3F")){{
-            explosiveness = 0.1f;
-            flammability = 0.1f;
-            buildable = false;
-        }};
         /* Nuclear Products */
         plutonium239 = new Item("plutonium239", Color.valueOf("FF0000")){{
             radioactivity = 0.9f;
@@ -131,6 +131,18 @@ public class mdItems {
         salt = new Item("salt", Color.valueOf("FFFFFF")){{
         }};
         /* Ores */ 
+    };
+};
+
+/*        
+    Temporarily removed codes:
+
+        machGunAmmo = new Item("machine-gun-ammo", Color.valueOf("3F3F3F")){{
+            explosiveness = 0.1f;
+            flammability = 0.1f;
+            buildable = false;
+        }}; 
+
         rawAluminium = new Item("raw-aluminium", Color.valueOf("BDC7CC")){{
             hardness = 2;
             buildable = false;
@@ -143,5 +155,4 @@ public class mdItems {
             hardness = 1;
             buildable = false;
         }};
-    };
-};
+*/
